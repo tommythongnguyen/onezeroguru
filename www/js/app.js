@@ -12,23 +12,18 @@ angular.module('website', ['ngAnimate','ngTouch','ngRoute','ui.bootstrap'])
 
     $scope.webImageUrlArray= MainService.getWebImageUrlArray();
 
-    $scope.personalWebArray= MainService.getPersonalWebArray();
-
-    $scope.webImageThumbsArray = MainService.getWebImageThumbsArray();
-
-    $scope.martialArtWebArray= MainService.getMartialArtWebArray();
-
-    $scope.martialArtWebThumbArray= MainService.getMartialArtWebThumbArray();
-   
     $scope.popupWebArray= [];
 
-    $scope.timer=3000;
-    $scope.popupTimer=2500;
-    $scope.stopTimer="";
-    $scope.nextTimer="";
-    $scope.popupStopTimer="";
-    $scope.popupNextTimer="";
-    $scope.preTimer="";
+    $scope.thumbImageWebSite=[];
+
+    var timer=3000,
+        popupTimer=2500,
+        stopTimer="",
+        nextTimer="",
+        popupStopTimer="",
+        popupNextTimer="",
+        preTimer="";
+       // counter =0;//index of image
     $scope.toggle=false;
     $scope.isDisplayPopupImage=false;//display the popup for webimage
     $scope.popupImageCounter=0;//the first image of the array
@@ -36,7 +31,7 @@ angular.module('website', ['ngAnimate','ngTouch','ngRoute','ui.bootstrap'])
     $scope.isOnCarouselMode= false;
     $scope.showPlayCaroselButton=true;//show the playCarouseSlideShow at the beginning
     $scope.isEnter=false;
-    $scope.counter =0;//index of image
+    
     $scope.contactImage="assets/images/icons/sendMail.jpeg";
     $scope.caroselButtonLabel="play";
    //-----===========TESTING========================
@@ -69,134 +64,123 @@ angular.module('website', ['ngAnimate','ngTouch','ngRoute','ui.bootstrap'])
         $scope.init = function(imgArray ){
         
         //$scope.urlImgArray = [];
-            $scope.stopTimer=$interval(function(){
+            stopTimer=$interval(function(){
                 $scope.nextImg();
 
-            }, $scope.timer);
+            },timer);
         };
         //==========nextImg==========
-    $scope.nextImg=function(){
-         $interval.cancel($scope.stopTimer);
-         $interval.cancel($scope.preTimer);
+         $scope.nextImg=function(){
+           $interval.cancel(stopTimer);
+           $interval.cancel(preTimer);
 
-       // if ($scope.counter < $scope.urlImgArray.length-1){
             if($scope.currentIndex === $scope.slides.length-1)
             {
-                 $interval.cancel($scope.nextTimer);
-                $scope.nextTimer=$interval($scope.nextImg,$scope.timer);
+                 $interval.cancel(nextTimer);
+                nextTimer=$interval($scope.nextImg,timer);
                 $scope.currentIndex=0;
             }
            // $timeout($scope.nextImg,$scope.time);
             else
             {
-                 $interval.cancel($scope.nextTimer);
-                $scope.nextTimer=$interval($scope.nextImg,$scope.timer);
+                 $interval.cancel(nextTimer);
+                nextTimer=$interval($scope.nextImg,timer);
                 $scope.currentIndex ++;
             }
         };
 
         //========================selectedImage=============$
-   $scope.thumbImageWebSite=[];
-   $scope.selectedImage = function(imageUrl){
-    console.log("image",imageUrl);
-    if (imageUrl ==='assets/images/imageWebReferences/personalWebThumb.jpg')
-    {
-        $scope.popupWebArray=$scope.personalWebArray; //copy the personal website to the popupWebArray
-        $scope.thumbImageWebSite=$scope.webImageThumbsArray;
-        $scope.isDisplayPopupImage=true;
-        
-    }
-    else if(imageUrl==='assets/images/imageWebReferences/martialArtWebThumb.jpg')
-    {
-        $scope.popupWebArray=$scope.martialArtWebArray;
-        $scope.thumbImageWebSite=$scope.martialArtWebThumbArray;
-        $scope.isDisplayPopupImage=true;
-     
-    }
-   } ;
-   //===============nextPopuImg===================
-   $scope.nextPopupImg=function(){
-        if ($scope.popupImageCounter===$scope.popupWebArray.length-1)
-        {
-            $scope.popupImageCounter=0;
-        }
-        else
-        {
-            $scope.popupImageCounter++;
-        }
-    $scope.isMouseOver=false;
-   };
-  //==================prePopupImg===============
-  $scope.prePopupImg=function(){
-        if ($scope.popupImageCounter===0)
-        {
-            $scope.popupImageCounter=$scope.popupWebArray.length-1;
-        }
-        else
-        {
-            $scope.popupImageCounter--;
-        }
-      $scope.isMouseOver=false;
-   };
-   //===============caroselButton==================
-
-   $scope.playCaroselSlideShow=function(){
-      if( $scope.caroselButtonLabel==="play")
-      { $scope.caroselButtonLabel="stop";
-        $scope.isOnCarouselMode= true;
-        $scope.runPopupCarosel();
-        }
-        else
-        {
-            $scope.caroselButtonLabel="play";
-             $scope.isOnCarouselMode= false;
-            $interval.cancel($scope.popupNextTimer);
-            $scope.showPlayCaroselButton=true;//show the playCarouseSlideShow at the beginning
-        }
-    };
-
-    //============
-    $scope.runPopupCarosel=function() {
-      //==========nextImg==========
-         $interval.cancel($scope.popupStopTimer);
-       
-       // if ($scope.counter < $scope.urlImgArray.length-1){
-            if($scope.popupImageCounter === $scope.popupWebArray.length-1)
+  
+       $scope.selectedImage = function(imageUrl){
+          if (imageUrl ==='assets/images/imageWebReferences/personalWebThumb.jpg')
+          {
+              $scope.popupWebArray= MainService.getPersonalWebArray();
+              $scope.thumbImageWebSite=MainService.getWebImageThumbsArray();
+              $scope.isDisplayPopupImage=true;
+              
+          }
+          else if(imageUrl==='assets/images/imageWebReferences/martialArtWebThumb.jpg')
+          {
+              $scope.popupWebArray= MainService.getMartialArtWebArray();
+              $scope.thumbImageWebSite=MainService.getMartialArtWebThumbArray();;
+              $scope.isDisplayPopupImage=true;
+           
+          }
+       };
+       //===============nextPopuImg===================
+       $scope.nextPopupImg=function(){
+            if ($scope.popupImageCounter===$scope.popupWebArray.length-1)
             {
-                 $interval.cancel($scope.popupNextTimer);
-                $scope.popupNextTimer=$interval($scope.runPopupCarosel,$scope.popupTimer);
                 $scope.popupImageCounter=0;
             }
-           // $timeout($scope.nextImg,$scope.time);
             else
             {
-                 $interval.cancel($scope.popupNextTimer);
-                $scope.popupNextTimer=$interval($scope.runPopupCarosel,$scope.popupTimer);
-                $scope.popupImageCounter ++;
+                $scope.popupImageCounter++;
             }
-             $scope.showPlayCaroselButton=false;//hide the playCarouseSlideShow at the beginning
-    }
-    //==============stopCaroselSlideShow================
-    $scope.exitPopupImageContainer=function(){
-        $scope.isDisplayPopupImage=false;
-        $scope.isOnCarouselMode=false;
-    };
+        $scope.isMouseOver=false;
+       };
+      //==================prePopupImg===============
+      $scope.prePopupImg=function(){
+            if ($scope.popupImageCounter===0){
+                $scope.popupImageCounter=$scope.popupWebArray.length-1;
+            }else{
+                $scope.popupImageCounter--;
+            }
+          $scope.isMouseOver=false;
+       };
+       //===============caroselButton==================
 
-    //=============mouseOver==============
-    $scope.mouseOverIndex=-1;
-    $scope.isMouseOver=false;
-    $scope.mouseOver=function(index)
-    {
-      $scope.mouseOverIndex=index;
-      $scope.isMouseOver=true;
+       $scope.playCaroselSlideShow=function(){
+          if( $scope.caroselButtonLabel==="play"){ 
+              $scope.caroselButtonLabel="stop";
+              $scope.isOnCarouselMode= true;
+              $scope.runPopupCarosel();
+            }else{
+                $scope.caroselButtonLabel="play";
+                 $scope.isOnCarouselMode= false;
+                $interval.cancel(popupNextTimer);
+                $scope.showPlayCaroselButton=true;//show the playCarouseSlideShow at the beginning
+            }
+        };
 
-    }
+        //============
+        $scope.runPopupCarosel=function() {
+          //==========nextImg==========
+             $interval.cancel(popupStopTimer);
+           
+           // if ($scope.counter < $scope.urlImgArray.length-1){
+                if($scope.popupImageCounter === $scope.popupWebArray.length-1){
+                    $interval.cancel(popupNextTimer);
+                    popupNextTimer=$interval($scope.runPopupCarosel,popupTimer);
+                    $scope.popupImageCounter=0;
+                }else{
+                    $interval.cancel(popupNextTimer);
+                    popupNextTimer=$interval($scope.runPopupCarosel,popupTimer);
+                    $scope.popupImageCounter ++;
+                }
+                 $scope.showPlayCaroselButton=false;//hide the playCarouseSlideShow at the beginning
+        }
+        //==============stopCaroselSlideShow================
+        $scope.exitPopupImageContainer=function(){
+            $scope.isDisplayPopupImage=false;
+            $scope.isOnCarouselMode=false;
+        };
 
-    //============selectThumbPopupImag=============
-    $scope.selectThumbPopupImag=function(imgIndex){
-      console.log("imgIndex",imgIndex);
-      $scope.popupImageCounter=imgIndex;
-    }
+        //=============mouseOver==============
+        $scope.mouseOverIndex=-1;
+        $scope.isMouseOver=false;
+        $scope.mouseOver=function(index)
+        {
+          $scope.mouseOverIndex=index;
+          $scope.isMouseOver=true;
+
+        }
+
+        //============selectThumbPopupImag=============
+        $scope.selectThumbPopupImag=function(imgIndex){
+          console.log("imgIndex",imgIndex);
+          $scope.popupImageCounter=imgIndex;
+        }
 
   }])
   //================Service============================
