@@ -1,0 +1,219 @@
+<header class="large"><!--main-header-->
+    <div id="logo-container">
+        <p id="logo-name"><span id="oneZeroTitle">OneZero</span><span id="guruTitle">Gurus</span></p>
+    </div>
+   
+    <div id="navigation-container">
+        <ul id="navigation">
+            
+            <li>
+                <a class="nav-item" href="#contact-us">Contact Us</a>
+            </li>
+            <li>
+                <a class="nav-item" href="#who-we-are">Who We Are</a>
+            </li>
+            <!--li>
+                <a class="nav-item" href="#what-we-done">What We Done</a>
+            </li-->
+             <li>
+                <a class="nav-item" href="#what-we-provide">What We Provide</a>
+            </li>
+            <li>
+                <a class="ACTIVE nav-item" href="#home">Home</a>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<div id="horizontalLine"></div>
+<div id="main-body" ng-init="init()">
+    <!--Slider Container Session-->
+    <a id="home"></a>
+    <div class="sliderContainer slider">
+           
+            <img ng-repeat="slide in slides" class="slideImgSize slide slide-animation nonDraggableImage"
+                 ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+                 ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
+
+            <a class="arrow prev" href="" ng-click="nextSlide()"></a>
+            <a class="arrow next" href="" ng-click="prevSlide()"></a>
+            <nav class="nav">
+                <div class="wrapper">
+                    <ul class="dots">
+                        <li class="dot" ng-repeat="slide in slides">
+                            <a href="#" ng-class="{'active':isCurrentSlideIndex($index)}"
+                               ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
+                    </ul>
+                </div>
+            </nav>
+    </div>
+
+    <!--What we provide session-->
+    <div>
+        <a id="what-we-provide"></a>
+        <div id="webContainerTitle">What We Provide</div>
+        <div id="what-we-provide-container">SAMPLE TEXT <br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pulvinar molestie justo eu ultrices. Nullam sit amet ornare tellus. Nam enim enim, dignissim eu tellus sit amet, posuere interdum urna. Quisque a pharetra libero. Pellentesque leo libero, malesuada ac eros lacinia, imperdiet vulputate metus. Vestibulum ut lectus in dui adipiscing rhoncus id ac tortor. Donec id nisl ut enim auctor vehicula. Donec congue, risus vel aliquet commodo, arcu quam facilisis diam, nec pharetra purus metus id neque. Cras scelerisque auctor arcu a interdum. Etiam sollicitudin rhoncus arcu, et iaculis neque volutpat id. Nam quis tortor viverra mi dapibus porta.
+
+        Vivamus interdum tellus odio. Donec feugiat ultrices arcu in auctor. Morbi tincidunt magna vitae ultricies lacinia. Duis consequat et diam id egestas. Donec venenatis ultricies justo nec laoreet. Mauris mattis lorem vitae nulla dignissim ultricies. Ut ac lacus nibh. Curabitur elementum a nisl viverra commodo. Duis et sapien a arcu tristique eleifend sit amet in sapien. Suspendisse potenti. Vivamus lectus arcu, sagittis ac ullamcorper adipiscing, auctor sed lorem. Aenean auctor enim id mollis sodales.
+
+        Morbi pharetra pharetra imperdiet. Cras elementum tempus purus nec scelerisque. In et vehicula ligula. Quisque est sem, commodo id tellus tempus, eleifend convallis ipsum. Aliquam adipiscing turpis enim. In scelerisque quis metus non tincidunt. Mauris eu ligula ac felis porttitor cursus consequat egestas dolor. Fusce ornare pellentesque aliquam. Duis facilisis vehicula odio, vel luctus velit aliquet ut. Donec vitae lacus mollis, commodo sem eget, dignissim orci.
+
+        Maecenas ac mauris consequat, ornare justo sed, feugiat neque. Aliquam ac dictum neque. Aliquam dictum tellus ac erat sollicitudin, quis interdum mauris egestas. Curabitur at turpis vel tellus varius iaculis. Vestibulum tincidunt urna sodales sapien lobortis, a sollicitudin lacus tincidunt. In pretium lacus ligula. Quisque tincidunt fermentum eros, vitae tincidunt lorem auctor ut. Vivamus et mi tristique, dictum est at, adipiscing augue. Cras mollis, nunc ac placerat consectetur, mi turpis pellentesque libero, non congue eros mi a arcu. Vestibulum urna sapien, condimentum eget felis a, pulvinar molestie orci. Maecenas non nibh in nunc malesuada vulputate. Praesent purus massa, tincidunt at egestas vel, venenatis sit amet justo. Vestibulum dignissim mauris massa.</div>
+    </div>
+
+        <!--What we done session-->
+    <div id="WebContainer">
+        <a id="what-we-done"></a>
+        <div id="webContainerTitle">What We Done</div>
+        <div>
+            <div id="websiteList-container">
+                
+                <div id="personal-website-container">    
+                    <a href=""><img class="website-home-image" webImageUrlArray ng-src="{{webImageUrlArray[0]}}" ng-click="selectedImage(webImageUrlArray[0])"></a>
+                    <div class="website-introduction-container">
+                        <p class="website-text-header">Personal Website</p>
+                        <p class="website-text-introduction">Introduction of Personal Website</p>
+                    </div>
+                </div>
+                <div id="smallBusiness-website-container">
+                    <a href=""><img class="website-home-image" webImageUrlArray ng-src="{{webImageUrlArray[1]}}" ng-click="selectedImage(webImageUrlArray[1])"></a>
+
+                    <div class="website-introduction-container">
+                        <p class="website-text-header">Small Business Website</p>
+                        <p class="website-text-introduction">Introduction of Small Business Website</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!--Who we are-->
+    <!--div id="who-we-are-container">
+        <a id="who-we-are"></a>
+        <div class="session-title">Who We Are</div>
+        <div id="who-we-are-container">Content</div>
+    </div-->
+
+
+    <div id="contact-container">
+        <a id="contact-us"></a>
+        <div id="contactLabel">Contact Us</div>
+        <div id="contact-Detail-container">
+                <div id="form-container">
+                    <form action="html/mail.php" method="POST">
+                        <div id="leftFormColumn">
+                            <input  id="fnameFormInput" name="fname" type="text" placeholder="First Name"/><br>
+                            <input  id="lnameFormInput" name="lname" type="text" placeholder="Last Name"/><br>
+                            <input  id="emailFormInput" name="email" type="text" placeholder="Enter Email"/><br>
+                            <input  id="phoneFormInput" name="phone" type="tel" placeholder="Enter Phone Number"/><br>
+                            <input  id="bnameFormInput" name="business-name" type="text" placeholder="Enter Business Name"/><br>
+                        </div>
+                        <div id="rightFormColumn">
+                            <textarea id="messageFormInput" name="message" placeholder="Message"></textarea><br> 
+                            <button id="clearButton" type="reset">Clear</button>
+                            <button id="sendButton" type="submit">Send</button>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+
+    <a id="contact-us"></a>
+    <div id="footer-container">
+           &copy; OneZeroGurus - <span id="contact-phone">Phone: (248)820-5735</span>
+    </div>
+
+
+<!---####################This for Web Image Popup #################-->
+<div modal="isDisplayPopupImage">
+    <div id="imagePopupContainer">
+        <img style="width:100%;height:100%;"ng-src="{{popupWebArray[popupImageCounter]}}">
+    </div>
+    <div ng-if="!isOnCarouselMode">
+        <ul  id="imageThumbPopupContainer"  ng-mouseenter="isEnter=true; " ng-mouseleave="isEnter=false" >
+                <li id ="imageLi" ng-if="isEnter" >
+                    <a href=""><img  ng-mouseover="mouseOver($index)" data-ng-repeat="thumbImgUrl in thumbImageWebSite track by $index" class="thumbPopupCarosel" ng-src="{{thumbImgUrl}}"  ng-class="{'smallThumbPopupCarosel': mouseOverIndex != $index , 'bigThumbPopupCarosel': mouseOverIndex === $index}" ng-click="selectThumbPopupImag($index)"></a>
+                </li>
+        </ul>
+    </div>
+    <div id="button">
+        <div id="Next-Button-Style">
+            <button class ="Next-Pre-Button carlPreButton"ng-click="nextPopupImg()" ng-disabled="isOnCarouselMode">Next</button>
+        </div>
+        <div id="Pre-Button-Style">
+            <button class="Next-Pre-Button carlNextButton" ng-click="prePopupImg()" ng-disabled="isOnCarouselMode">Pre</button>
+        </div>
+        <a href=""><div id="popup-stop-button-div" ng-if="!isOnCarouselMode">
+            <div id="popup-active-button" ng-click="exitPopupImageContainer()">Exit</div>
+        </div></a>
+         <a href=""><div id="popup-play-button-div">
+           <div id="popup-active-button" ng-click="playCaroselSlideShow();">{{caroselButtonLabel}}</div>
+        </div></a>
+        
+    </div>
+
+</div>
+<script>
+// Cache selectors
+var lastId,
+    topMenu = $("#navigation"),
+    topMenuHeight = topMenu.outerHeight()-15,
+    // All list items
+    menuItems = topMenu.find("a"),
+    // Anchors corresponding to menu items
+    scrollItems = menuItems.map(function(){
+      var item = $($(this).attr("href"));
+      if (item.length) { return item; }
+    });
+
+menuItems.click(function(e){
+  var href = $(this).attr("href"),
+      offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight-50;
+  $('html, body').stop().animate({ 
+      scrollTop: offsetTop
+  }, 300);
+  e.preventDefault();
+});
+
+
+
+// Bind to scroll
+$(window).scroll(function(){
+     if($(document).scrollTop()>30){
+        $("header").removeClass("large").addClass("small");
+    } else{
+        $("header").removeClass("small").addClass("large");
+    }
+   // Get container scroll position
+   var fromTop = $(this).scrollTop()+topMenuHeight -120;
+   
+   // Get id of current scroll item
+   var cur = scrollItems.map(function(){
+     if ($(this).offset().top > fromTop)
+       return this;
+   });
+   // Get the id of the current element
+   cur = cur[cur.length-1];
+   var id = cur && cur.length ? cur[0].id : "";
+   
+   if (lastId !== id) {
+       lastId = id;
+       // Set/remove active class
+       menuItems
+         .parent().removeClass("ACTIVE")
+         .end().filter("[href=#"+id+"]").parent().addClass("ACTIVE");
+   }                
+});
+
+    $(function(){
+        $('#top-menu').data('size','big');
+    });
+
+/*-----------Make The Home Page Become active at the time loading the page*/
+jQuery( document ).ready( function ( $ ) {
+    // Add first and last menu item classes
+   
+    $('ul#navigation li:last-child').addClass( 'ACTIVE' );
+});
+
+</script>
