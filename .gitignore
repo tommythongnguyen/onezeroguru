@@ -1,0 +1,4 @@
+#ignore/untrack files and folders below
+.DS_Store
+bin
+hooks

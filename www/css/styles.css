@@ -61,7 +61,7 @@
 NAV
 ---------------------------------------------------------*/
 
-.nav {
+nav#nav-carousel {
     text-align: center;
     display: block;
     position: absolute;
@@ -76,18 +76,18 @@ NAV
     -webkit-user-drag: none;
 }
 
-.nav .wrapper {
+nav#nav-carousel .wrapper {
     margin: 0 auto;
     width: 100%;
     padding: 1em 0 .8em;
 }
 
-.nav ul {
+nav#nav-carousel ul {
     margin: 0;
     width: 100%;
 }
 
-.nav .dot, .nav .dot a {
+nav#nav-carousel .dot, nav#nav-carousel .dot a {
     display: inline-block;
     zoom: 1;
 }

@@ -1,43 +1,35 @@
-<header class="large"><!--main-header-->
-    <div id="logo-container">
-        <p id="logo-name"><span id="oneZeroTitle">OneZero</span><span id="guruTitle">Gurus</span></p>
-    </div>
-   
-    <div id="navigation-container">
-        <ul id="navigation">
-            
-            <li>
-                <a class="nav-item" href="#contact-us">Contact Us</a>
-            </li>
-            <li>
-                <a class="nav-item" href="#who-we-are">Who We Are</a>
-            </li>
-            <!--li>
-                <a class="nav-item" href="#what-we-done">What We Done</a>
-            </li-->
-             <li>
-                <a class="nav-item" href="#what-we-provide">What We Provide</a>
-            </li>
-            <li>
-                <a class="ACTIVE nav-item" href="#home">Home</a>
-            </li>
-        </ul>
-    </div>
-</header>
+<div class="navbar navbar-inverse navbar-fixed-top head-nave borderStyle" role="navigation"><!--main-header-->
+    <section class="container">
+        <div id="navbar-header">
+            <a class="navbar-brand" href="#"><span class="h3" id="oneZeroTitle">OneZero</span><span id="guruTitle">Gurus</span></a>
+            <button  class="navbar-toggle"  data-toggle="collapse" data-target=".navHeaderCollapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+       
+        <nav class="collapse navbar-collapse navHeaderCollapse">
+            <ul class="nav navbar-nav navbar-right">   
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#what-we-provide">What We Provide</a></li>
+                <li><a href="#who-we-are">Who We Are</a></li>
+                <li><a href="#contact-us">Contact Us</a></li>
+            </ul>
+         </nav>
+    </section>
+</div>
 
-<div id="horizontalLine"></div>
-<div id="main-body" ng-init="init()">
+
+<div class="container" ng-init="init()">
     <!--Slider Container Session-->
-    <a id="home"></a>
-    <div class="sliderContainer slider">
+    <div class="slider">
            
-            <img ng-repeat="slide in slides" class="slideImgSize slide slide-animation nonDraggableImage"
-                 ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
-                 ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
+            <img ng-repeat="slide in slides" ng-src="{{slide.image}}">
 
             <a class="arrow prev" href="" ng-click="nextSlide()"></a>
             <a class="arrow next" href="" ng-click="prevSlide()"></a>
-            <nav class="nav">
+            <nav>
                 <div class="wrapper">
                     <ul class="dots">
                         <li class="dot" ng-repeat="slide in slides">
@@ -215,5 +207,16 @@ jQuery( document ).ready( function ( $ ) {
    
     $('ul#navigation li:last-child').addClass( 'ACTIVE' );
 });
+
+</script>
+<script>
+$(function(){
+   $('.autoplay').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+}); 
+})
 
 </script>
